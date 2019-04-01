@@ -1,0 +1,23 @@
+sudo: requireed
+services:
+ - docker
+
+before_install:
+ - docker build -t anoop600/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run anoop600/react-test npm test -- --coverage
+
+after_success:
+ - docker build -t anoop600/multi-client ./client
+ - docker build -t anoop600/multi-nginx ./nginx
+ - docker build -t anoop600/multi-server ./server
+ - docker build -t anoop600/multi-worker ./worker
+
+ #Login
+ - echo "$DOCKER_PASSWORD" | docekr login -u "$DOCKER_ID" --password-stdin
+
+ - docker push anoop600/multi-client
+ - docker push anoop600/multi-nginx
+ - docekr push anoop600/multi-server
+ - docker push anoop600/multi-worker
