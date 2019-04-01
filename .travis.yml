@@ -19,5 +19,5 @@ after_success:
 
  - docker push anoop600/multi-client
  - docker push anoop600/multi-nginx
- - docekr push anoop600/multi-server
+ - docker push anoop600/multi-server
  - docker push anoop600/multi-worker
