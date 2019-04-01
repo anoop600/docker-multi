@@ -15,9 +15,9 @@ after_success:
  - docker build -t anoop600/multi-worker ./worker
 
  #Login
- - echo "$DOCKER_PASSWORD" | docekr login -u "$DOCKER_ID" --password-stdin
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
  - docker push anoop600/multi-client
  - docker push anoop600/multi-nginx
- - docekr push anoop600/multi-server
+ - docker push anoop600/multi-server
  - docker push anoop600/multi-worker
